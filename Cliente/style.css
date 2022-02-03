@@ -87,7 +87,7 @@ input:not([type="checkbox"]){
 input[type="submit"]{
   width: 100%!important;
   cursor: pointer;  
-  background: rgb(61, 157, 179);
+  background: #00FA9A;
   padding: 8px 5px;
   color: #fff;
   font-size: 20px;  
