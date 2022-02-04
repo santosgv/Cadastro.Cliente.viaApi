@@ -2,53 +2,15 @@
 <head>
   <meta charset="UTF-8" />
   <title>Formulário de Login e Registro com HTML5 e CSS3</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-  <link rel="stylesheet" type="text/css" href="style.css" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
   <div class="container" >
     <a class="links" id="paracadastro"></a>
-    <a class="links" id="paralogin"></a>
-    <div class="content">      
-      <!--FORMULÁRIO DE LOGIN-->
-      <div id="login">
-        <form method="post" action=""> 
-          <h1>Login</h1> 
-          <p> 
-            <label for="nome_login">Seu nome</label>
-            <input id="nome_login" name="nome_login" required="required" type="text" placeholder="ex. contato@gmail.com"/>
-          </p>
-           
-          <p> 
-            <label for="email_login">Seu e-mail</label>
-            <input id="email_login" name="email_login" required="required" type="password" placeholder="ex. senha" /> 
-          </p>
-           
-          <p> 
-            <input type="checkbox" name="manterlogado" id="manterlogado" value="" /> 
-            <label for="manterlogado">Manter-me logado</label>
-          </p>
-           
-          <p> 
-            <input type="submit" value="Logar" /> 
-          </p>
-           
-          <p class="link">
-            Ainda não tem conta?
-            <a href="#paracadastro">Cadastre-se</a>
-          </p>
-        </form>
-      </div>
- 
-      <!--FORMULÁRIO DE CADASTRO-->
       <div id="cadastro">
         <form method="post" action=""> 
           <h1>Cadastro</h1> 
-           
           <p> 
             <label for="nome_cad">Seu nome</label>
             <input id="nome_cad" name="nome_cad" required="required" type="text" placeholder="nome" />
@@ -65,13 +27,8 @@
           </p>
            
           <p> 
-            <input type="submit" class="btn btn-primary"  data-toggle="modal" data-target="#exampleModalCenter" value="Cadastrar"/> 
+            <button onclick=obtervalores() type="submit" class="btn btn-primary"  data-toggle="modal" data-target="#exampleModalCenter" value="Cadastrar"> Cadastrar</button>
           </p>
-           
-          <p class="link">  
-            Já tem conta?
-            <a href="#paralogin"> Ir para Login </a>
-          </p>7
         </form>
       </div>
     </div>
@@ -86,8 +43,8 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        Parabens por cadastrar em nossa plataforma
+      <div id="modal-texto" class="modal-body">
+        ...
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Ok</button>
@@ -95,5 +52,30 @@
     </div>
   </div>
 </div>
+<script>
+
+function obtervalores()
+{
+
+    var nome =document.getElementById('nome_cad').value;
+    var email =document.getElementById('email_cad').value;
+    var senha = document.getElementById('senha_cad').value;
+    var modaltexto =document.getElementById('modal-texto');
+    modaltexto.innerHTML="Parabens" +" "+ nome +" "+ "por cadastrar em nossa plataforma "+email+""+senha+""
+}
+
+
+$.ajax({
+    url:'http://127.0.0.1:8000/',
+    method:'GET',
+    async:true,
+    success: function(resposta){
+        console.log(resposta)
+    },
+    erro : function(resposta){
+        console.log(resposta)
+    }
+})
+</script>
 </body>
 </html>
